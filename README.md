@@ -47,7 +47,7 @@ VHUD.dismiss(1.0, 1.0)
 
 ### Shape
 
-- carcle
+- circle
 
 ```swift
 

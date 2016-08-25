@@ -16,9 +16,9 @@ final class DisplayLink {
     var needLoop: Bool = false
     
     let duration: TimeInterval
-    var currentDuration : TimeInterval = 0
-    var displayLink: CADisplayLink?
-    var percentComplete: Double = 0
+    private(set) var currentDuration: TimeInterval = 0
+    private(set) var percentComplete: Double = 0
+    private var displayLink: CADisplayLink?
     
     deinit {
         self.closeLink()

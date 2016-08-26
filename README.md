@@ -10,7 +10,7 @@ Simple HUD.
 
 VHUD is inspired by [PKHUD](https://github.com/pkluz/PKHUD).
 
-## Exsample
+## Example
 
 ### Show
 

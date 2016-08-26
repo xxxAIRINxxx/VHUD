@@ -166,7 +166,24 @@ VHUD.show(content)
 
 ## Installation
 
-Soon...
+#### CocoaPods
+You can use [CocoaPods](http://cocoapods.org/) to install `VHUD` by adding it to your `Podfile`:
+
+```ruby
+platform :ios, '8.0'
+use_frameworks!
+pod 'VHUD'
+```
+
+To get the full benefits import `VHUD` wherever you import UIKit
+
+``` swift
+import UIKit
+import VHUD
+```
+#### Manually
+1. Download and drop ```/Sources``` folder in your project.  
+2. Congratulations!  
 
 ## License
 

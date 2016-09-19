@@ -100,7 +100,7 @@ final class VHUDView: UIView {
     }
     
     func finishAllIfNeeded() {
-        self.progressView.radius += 0.17
+        self.progressView.outsideMargin -= 0.14
     }
     
     func finish() {

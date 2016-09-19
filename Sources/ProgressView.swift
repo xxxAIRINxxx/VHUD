@@ -15,20 +15,29 @@ final class ProgressView: UIView {
     
     private static let startAngle: Double = 90
     private static let endAngle: Double = 270
-    private static let radius: CGFloat = 65.0
-    private static let lineWidth: CGFloat = 30.0
-    private static let loopLineWidth: Double = 25.0
     
     var mode: Mode?
     
     var defaultColor: UIColor = .black
     var elapsedColor: UIColor = .lightGray
     
-    var percentComplete: Double = 0 {
+    var lineWidth: CGFloat = 30.0 {
         didSet { setNeedsDisplay() }
     }
-  
-    var radius: CGFloat = ProgressView.radius {
+    
+    var loopLineWidth: Double = 25.0 {
+        didSet { setNeedsDisplay() }
+    }
+    
+    var radius: CGFloat {
+        return (self.bounds.width * 0.5) - (self.lineWidth * 0.5) - self.outsideMargin
+    }
+    
+    var outsideMargin: CGFloat = 10.0 {
+        didSet { setNeedsDisplay() }
+    }
+    
+    var percentComplete: Double = 0 {
         didSet { setNeedsDisplay() }
     }
   
@@ -47,7 +56,6 @@ final class ProgressView: UIView {
     }
     
     func finish() {
-        self.radius = ProgressView.radius
         self.mode = nil
     }
     
@@ -59,7 +67,7 @@ final class ProgressView: UIView {
         let s = CGFloat(startAngle * M_PI / 180.0)
         let e = CGFloat(endAngle * M_PI / 180.0)
         let art = UIBezierPath(arcCenter: self.center, radius: self.radius, startAngle: s, endAngle: e, clockwise: true)
-        art.lineWidth = ProgressView.lineWidth
+        art.lineWidth = self.lineWidth
         art.setLineDash([ CGFloat(M_PI * Double(self.radius * 0.01 * 0.225)), CGFloat(M_PI * Double(self.radius * 0.01 * 0.7545)) ],
                         count: 2,
                         phase: 0)
@@ -72,7 +80,7 @@ final class ProgressView: UIView {
         
         if case Mode.loop = m {
             let current = self.convertAngle(percentComplete: percentComplete)
-            let start = current - ProgressView.loopLineWidth
+            let start = current - self.loopLineWidth
             self.drawPath(startAngle: -ProgressView.startAngle, endAngle: ProgressView.endAngle, strokeColor: self.defaultColor)
             self.drawPath(startAngle: start, endAngle: current, strokeColor: self.elapsedColor)
         } else {

@@ -11,7 +11,7 @@ import UIKit
 final class VHUDWindow: UIWindow {
 
     private let backgroundView: UIView = UIView()
-    private let hudView: VHUDView = VHUDView()
+    private var hudView: VHUDView?
     
     private var link: DisplayLink?
     private var dismissalLink: DisplayLink?
@@ -38,16 +38,13 @@ final class VHUDWindow: UIWindow {
         self.addSubview(self.backgroundView)
         self.allPin(subView: self.backgroundView)
         
-        self.addSubview(self.hudView)
-        self.hudView.center = center
-        
         self.isHidden = true
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.hudView.center = center
+        self.hudView?.center = center
     }
     
     func show(content: VHUDContent) {
@@ -56,7 +53,11 @@ final class VHUDWindow: UIWindow {
         self.content = content
         self.isUserInteractionEnabled = content.isUserInteractionEnabled
         
-        self.hudView.setContent(content)
+        let view = VHUDView()
+        self.addSubview(view)
+        view.center = self.center
+        self.hudView = view
+        self.hudView?.setContent(content)
         
         switch content.background {
         case .none:
@@ -83,12 +84,12 @@ final class VHUDWindow: UIWindow {
             break
         }
         
-        self.hudView.setText(text: self.content?.loadingText)
+        self.hudView?.setText(text: self.content?.loadingText)
         let needShowProgressText = self.content?.loadingText == nil
         self.link?.updateDurationCallback = { [weak self] percentComplete in
-            self?.hudView.updateProgress(percentComplete)
+            self?.hudView?.updateProgress(percentComplete)
             if needShowProgressText {
-                self?.hudView.updateProgressText(percentComplete)
+                self?.hudView?.updateProgressText(percentComplete)
             }
         }
         
@@ -99,12 +100,15 @@ final class VHUDWindow: UIWindow {
     }
     
     func updateProgress(_ percentComplete: Double) {
-        self.hudView.updateProgress(percentComplete)
-        self.hudView.updateProgressText(percentComplete)
+        self.hudView?.updateProgress(percentComplete)
+        self.hudView?.updateProgressText(percentComplete)
     }
     
     func finish() {
-        self.hudView.finish()
+        self.hudView?.finish()
+        self.hudView?.removeFromSuperview()
+        self.hudView = nil
+        
         self.link?.reset()
         self.dismissalLink?.reset()
         self.link = nil
@@ -112,7 +116,8 @@ final class VHUDWindow: UIWindow {
         self.content = nil
         self.backgroundView.subviews.forEach { $0.removeFromSuperview() }
         self.backgroundView.backgroundColor = .clear
-        self.resignKey()
+        
+        UIApplication.shared.delegate?.window??.makeKeyAndVisible()
         self.isHidden = true
         self.isUserInteractionEnabled = false
     }
@@ -121,12 +126,12 @@ final class VHUDWindow: UIWindow {
         if self.dismissalLink != nil { return }
         
         self.link?.reset()
-        self.hudView.setText(text: text ?? self.content?.completionText)
+        self.hudView?.setText(text: text ?? self.content?.completionText)
         
         if let d = deley {
             self.link = DisplayLink(d)
             self.link?.updateDurationCallback = { [weak self] percentComplete in
-                self?.hudView.finishAllIfNeeded()
+                self?.hudView?.finishAllIfNeeded()
             }
             self.link?.completion = { [weak self] in
                 self?.dismiss(duration, nil, text, completion)

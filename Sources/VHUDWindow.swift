@@ -144,6 +144,7 @@ final class VHUDWindow: UIWindow {
             }
             self.dismissalLink?.completion = { [weak self] in
                 self?.finish()
+                completion?()
             }
             self.dismissalLink?.start()
         }

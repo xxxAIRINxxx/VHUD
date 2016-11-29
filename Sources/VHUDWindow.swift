@@ -9,13 +9,14 @@
 import UIKit
 
 final class VHUDWindow: UIWindow {
+    
+    internal var content: VHUDContent?
 
     private let backgroundView: UIView = UIView()
     private var hudView: VHUDView?
     
     private var link: DisplayLink?
     private var dismissalLink: DisplayLink?
-    private var content: VHUDContent?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,7 +56,10 @@ final class VHUDWindow: UIWindow {
         
         let view = VHUDView()
         self.addSubview(view)
-        view.center = self.center
+        
+        _ = view.addWidthConstraint(view: view, constant: VHUDView.size.width)
+        _ = view.addHeightConstraint(view: view, constant: VHUDView.size.height)
+
         self.hudView = view
         self.hudView?.setContent(content)
         

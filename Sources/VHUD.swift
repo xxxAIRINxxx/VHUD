@@ -71,7 +71,11 @@ public struct VHUD {
     
     private static let window: VHUDWindow = VHUDWindow(frame: CGRect.zero)
     
-    private init () {}
+    fileprivate(set) var content: VHUDContent
+    
+    public init (_ mode: Mode) {
+        self.content = VHUDContent(mode)
+    }
     
     public static func show(loopInterval: TimeInterval) {
         self.show(VHUDContent(.loop(loopInterval)))
@@ -93,3 +97,66 @@ public struct VHUD {
         self.window.dismiss(duration, deley, text, completion)
     }
 }
+
+extension VHUD {
+    
+    public mutating func setShapeStyle(_ shape: Shape) -> VHUD {
+        self.content.shape = shape
+        return self
+    }
+
+    public mutating func setThemeStyle(_ theme: Style) -> VHUD {
+        self.content.style = theme
+        return self
+    }
+
+    public mutating func setBackgroundStyle(_ background: Background) -> VHUD {
+        self.content.background = background
+        return self
+    }
+    
+    public mutating func setLoadingText(_ text: String) -> VHUD {
+        self.content.loadingText = text
+        return self
+    }
+    
+    public mutating func setCompletionText(_ text: String) -> VHUD {
+        self.content.completionText = text
+        return self
+    }
+    
+    public mutating func setLabelFont(_ font: UIFont) -> VHUD {
+        self.content.labelFont = font
+        return self
+    }
+    
+    public mutating func setUserInteractionEnabled(_ isUserInteractionEnabled: Bool) -> VHUD {
+        self.content.isUserInteractionEnabled = isUserInteractionEnabled
+        return self
+    }
+    
+    public mutating func setLineDefaultColor(_ color: UIColor) -> VHUD {
+        self.content.lineDefaultColor = color
+        return self
+    }
+    
+    public mutating func setLineElapsedColor(_ color: UIColor) -> VHUD {
+        self.content.lineElapsedColor = color
+        return self
+    }
+    
+    public func show(_ inView: UIView?) -> VHUD {
+        if inView == nil {
+            VHUD.show(self.content)
+        } else {
+            
+        }
+        
+        return self
+    }
+    
+    public func dismiss(_ duration: TimeInterval, _ deley: TimeInterval? = nil, _ text: String? = nil, _ completion: ((Void) -> Void)? = nil) {
+        
+    }
+}
+

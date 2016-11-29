@@ -10,7 +10,8 @@ import UIKit
 
 final class VHUDView: UIView {
     
-    private static let size: CGSize = CGSize(width: 180, height: 180)
+    static let size: CGSize = CGSize(width: 180, height: 180)
+    
     private static let labelFont: UIFont = UIFont(name: "HelveticaNeue-Thin", size: 26)!
     private static let labelInset: CGFloat = 44.0
     

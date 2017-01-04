@@ -13,6 +13,15 @@ public enum Mode {
     case loop(TimeInterval)
     case duration(TimeInterval, dismissDeley: TimeInterval?)
     case percentComplete
+    
+    public static func ==(lhs: Mode, rhs: Mode) -> Bool {
+        switch (lhs, rhs) {
+        case (.loop(_), .loop(_)): return true
+        case (.duration(_), .duration(_)): return true
+        case (.percentComplete, .percentComplete): return true
+        default: return false
+        }
+    }
 }
 
 public enum Shape {
@@ -72,6 +81,8 @@ public struct VHUD {
     private static let window: VHUDWindow = VHUDWindow(frame: CGRect.zero)
     
     fileprivate(set) var content: VHUDContent
+    
+    fileprivate var hudView: VHUDView?
     
     public init (_ mode: Mode) {
         self.content = VHUDContent(mode)
@@ -145,18 +156,16 @@ extension VHUD {
         return self
     }
     
-    public func show(_ inView: UIView?) -> VHUD {
-        if inView == nil {
-            VHUD.show(self.content)
-        } else {
-            
-        }
+    public mutating func show(_ inView: UIView) -> VHUD {
+        let view = VHUDView(inView: inView)
+        self.hudView = view
+        self.hudView?.setContent(content)
         
         return self
     }
     
     public func dismiss(_ duration: TimeInterval, _ deley: TimeInterval? = nil, _ text: String? = nil, _ completion: ((Void) -> Void)? = nil) {
-        
+        self.hudView?.dismiss(duration, deley, text, completion)
     }
 }
 

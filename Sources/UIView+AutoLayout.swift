@@ -33,9 +33,15 @@ extension UIView {
         _ = addPinConstraint(addView: self, withItem: subView, toItem: self, attribute: .right, constant: constant)
     }
     
+    func pinCenter(subView: UIView, _ constantX: CGFloat = 0.0, _ constantY: CGFloat = 0.0) {
+        checkTranslatesAutoresizing(withView: subView, toView: nil)
+        _ = addPinConstraint(addView: self, withItem: subView, toItem: self, attribute: .centerX, constant: constantX)
+        _ = addPinConstraint(addView: self, withItem: subView, toItem: self, attribute: .centerY, constant: constantY)
+    }
+    
     // MARK: NSLayoutConstraint
     
-    func addPinConstraint(addView: UIView, withItem:UIView, toItem:UIView?, attribute:NSLayoutAttribute, constant:CGFloat) -> NSLayoutConstraint {
+    func addPinConstraint(addView: UIView, withItem: UIView, toItem: UIView?, attribute: NSLayoutAttribute, constant: CGFloat) -> NSLayoutConstraint {
         return addConstraint(
             addView: addView,
             relation: .equal,
@@ -47,7 +53,7 @@ extension UIView {
         )
     }
     
-    func addWidthConstraint(view: UIView, constant:CGFloat) -> NSLayoutConstraint {
+    func addWidthConstraint(view: UIView, constant: CGFloat) -> NSLayoutConstraint {
         return addConstraint(
             addView: view,
             relation: .equal,
@@ -59,7 +65,7 @@ extension UIView {
         )
     }
     
-    func addHeightConstraint(view: UIView, constant:CGFloat) -> NSLayoutConstraint {
+    func addHeightConstraint(view: UIView, constant: CGFloat) -> NSLayoutConstraint {
         return addConstraint(
             addView: view,
             relation: .equal,
@@ -71,7 +77,7 @@ extension UIView {
         )
     }
     
-    func addConstraint(addView: UIView, relation: NSLayoutRelation, withItem:UIView, withAttribute:NSLayoutAttribute, toItem:UIView?, toAttribute:NSLayoutAttribute, constant:CGFloat) -> NSLayoutConstraint {
+    func addConstraint(addView: UIView, relation: NSLayoutRelation, withItem: UIView, withAttribute: NSLayoutAttribute, toItem: UIView?, toAttribute:NSLayoutAttribute, constant: CGFloat) -> NSLayoutConstraint {
         let constraint = NSLayoutConstraint(
             item: withItem,
             attribute: withAttribute,

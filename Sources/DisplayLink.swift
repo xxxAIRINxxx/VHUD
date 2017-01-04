@@ -56,10 +56,10 @@ final class DisplayLink {
         self.currentDuration -= displayLink.duration
         let percentComplete = (self.duration - self.currentDuration) / self.duration
         
-        let c = ceil(percentComplete * 100) / 100
+        let c = floor(percentComplete * 100) / 100
         if c != self.percentComplete {
-            self.percentComplete = c
-            self.updateDurationCallback?(c)
+            self.percentComplete = max(0, c)
+            self.updateDurationCallback?(self.percentComplete)
         }
         
         if self.currentDuration <= 0 {

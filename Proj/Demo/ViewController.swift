@@ -69,6 +69,7 @@ final class ViewController: UIViewController {
             }
         case 1:
             content.mode = .duration(3, dismissDeley: 1.0)
+            content.loadingText = "Loading.."
             content.completionText = "Finish!"
             VHUD.show(content)
         case 2:

@@ -5,11 +5,10 @@
 //  Created by xxxAIRINxxx on 2016/07/19.
 //  Copyright © 2016 xxxAIRINxxx. All rights reserved.
 //
+// @see http://stackoverflow.com/questions/16192254/why-does-giving-addarcwithcenter-a-startangle-of-0-degrees-make-it-start-at-90-d
 
 import UIKit
 import QuartzCore
-
-// @see http://stackoverflow.com/questions/16192254/why-does-giving-addarcwithcenter-a-startangle-of-0-degrees-make-it-start-at-90-d
 
 final class ProgressView: UIView {
     
@@ -66,7 +65,8 @@ final class ProgressView: UIView {
     private func drawPath(startAngle: Double, endAngle: Double, strokeColor: UIColor) {
         let s = CGFloat(startAngle * M_PI / 180.0)
         let e = CGFloat(endAngle * M_PI / 180.0)
-        let art = UIBezierPath(arcCenter: self.center, radius: self.radius, startAngle: s, endAngle: e, clockwise: true)
+        let center = CGPoint(x: self.bounds.width * 0.5, y: self.bounds.height * 0.5)
+        let art = UIBezierPath(arcCenter: center, radius: self.radius, startAngle: s, endAngle: e, clockwise: true)
         art.lineWidth = self.lineWidth
         art.setLineDash([ CGFloat(M_PI * Double(self.radius * 0.01 * 0.225)), CGFloat(M_PI * Double(self.radius * 0.01 * 0.7545)) ],
                         count: 2,

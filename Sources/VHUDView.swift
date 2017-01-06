@@ -42,9 +42,7 @@ final class VHUDView: UIView {
     private func setup() {
         self.progressView.clipsToBounds = true
         self.addSubview(self.progressView)
-        self.pinCenter(subView: self.progressView)
-        _ = self.progressView.addWidthConstraint(view: self.progressView, constant: VHUDView.size.width)
-        _ = self.progressView.addHeightConstraint(view: self.progressView, constant: VHUDView.size.height)
+        self.setCenterLayoutConstraint(self.progressView)
         
         self.label.textAlignment = .center
         self.label.backgroundColor = .clear
@@ -97,9 +95,13 @@ final class VHUDView: UIView {
             self.label.textColor = .white
             self.progressView.defaultColor = content.lineDefaultColor ?? .darkGray
             self.progressView.elapsedColor = content.lineElapsedColor ?? .white
+
             let v = UIVisualEffectView(effect: UIBlurEffect(style: effecType))
-            self.progressView.insertSubview(v, belowSubview: self.label)
-            self.progressView.allPin(subView: v)
+            v.clipsToBounds = true
+            self.addSubview(v)
+            self.sendSubview(toBack: v)
+            v.layer.cornerRadius = self.progressView.layer.cornerRadius
+            self.setCenterLayoutConstraint(v)
             self.blurView = v
         }
         
@@ -147,6 +149,12 @@ final class VHUDView: UIView {
         if p < 0.0 { p = 0.0 }
         if p > 1.0 { p = 1.0 }
         self.label.text = Int(p * 100).description + "%"
+    }
+    
+    private func setCenterLayoutConstraint(_ view: UIView) {
+        self.pinCenter(subView: view)
+        _ = view.addWidthConstraint(view: view, constant: VHUDView.size.width)
+        _ = view.addHeightConstraint(view: view, constant: VHUDView.size.height)
     }
     
     private func finishAllIfNeeded() {

@@ -185,6 +185,25 @@ import UIKit
 import VHUD
 
 ```
+
+#### Carthage
+
+You can use [Carthage](https://github.com/Carthage/Carthage) to install `VHUD` by adding it to your `Cartfile`:
+
+```
+
+github "xxxAIRINxxx/VHUD"
+
+```
+
+To get the full benefits import `VHUD` wherever you import UIKit
+
+``` swift
+
+import UIKit
+import VHUD
+
+```
 #### Manually
 
 1. Download and drop ```/Sources``` folder in your project.  

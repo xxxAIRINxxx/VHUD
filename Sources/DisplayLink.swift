@@ -12,7 +12,7 @@ import QuartzCore
 
 final class DisplayLink {
     
-    var completion: ((Void) -> Void)?
+    var completion: (() -> Void)?
     var updateDurationCallback: ((Double) -> Void)?
     
     var needLoop: Bool = false

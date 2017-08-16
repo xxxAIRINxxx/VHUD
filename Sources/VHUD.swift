@@ -104,7 +104,7 @@ public struct VHUD {
         self.window.updateProgress(Double(percentComplete))
     }
     
-    public static func dismiss(_ duration: TimeInterval, _ deley: TimeInterval? = nil, _ text: String? = nil, _ completion: ((Void) -> Void)? = nil) {
+    public static func dismiss(_ duration: TimeInterval, _ deley: TimeInterval? = nil, _ text: String? = nil, _ completion: (() -> Void)? = nil) {
         self.window.dismiss(duration, deley, text, completion)
     }
 }
@@ -164,7 +164,7 @@ extension VHUD {
         return self
     }
     
-    public func dismiss(_ duration: TimeInterval, _ deley: TimeInterval? = nil, _ text: String? = nil, _ completion: ((Void) -> Void)? = nil) {
+    public func dismiss(_ duration: TimeInterval, _ deley: TimeInterval? = nil, _ text: String? = nil, _ completion: (() -> Void)? = nil) {
         self.hudView?.dismiss(duration, deley, text, completion)
     }
 }

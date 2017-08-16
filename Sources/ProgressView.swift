@@ -63,12 +63,12 @@ final class ProgressView: UIView {
     }
     
     private func drawPath(startAngle: Double, endAngle: Double, strokeColor: UIColor) {
-        let s = CGFloat(startAngle * M_PI / 180.0)
-        let e = CGFloat(endAngle * M_PI / 180.0)
+        let s = CGFloat(startAngle * .pi / 180.0)
+        let e = CGFloat(endAngle * .pi / 180.0)
         let center = CGPoint(x: self.bounds.width * 0.5, y: self.bounds.height * 0.5)
         let art = UIBezierPath(arcCenter: center, radius: self.radius, startAngle: s, endAngle: e, clockwise: true)
         art.lineWidth = self.lineWidth
-        art.setLineDash([ CGFloat(M_PI * Double(self.radius * 0.01 * 0.225)), CGFloat(M_PI * Double(self.radius * 0.01 * 0.7545)) ],
+        art.setLineDash([ CGFloat(.pi * Double(self.radius * 0.01 * 0.225)), CGFloat(.pi * Double(self.radius * 0.01 * 0.7545)) ],
                         count: 2,
                         phase: 0)
         strokeColor.setStroke()

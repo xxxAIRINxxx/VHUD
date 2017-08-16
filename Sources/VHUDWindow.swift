@@ -62,7 +62,7 @@ final class VHUDWindow: UIWindow {
         self.isUserInteractionEnabled = false
     }
     
-    func dismiss(_ duration: TimeInterval, _ deley: TimeInterval? = nil, _ text: String? = nil, _ completion: ((Void) -> Void)? = nil) {
+    func dismiss(_ duration: TimeInterval, _ deley: TimeInterval? = nil, _ text: String? = nil, _ completion: (() -> Void)? = nil) {
         self.hudView?.dismiss(duration, deley, text, completion)
     }
 }

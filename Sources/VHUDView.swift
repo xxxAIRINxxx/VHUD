@@ -12,7 +12,7 @@ final class VHUDView: UIView {
     
     static let size: CGSize = CGSize(width: 180, height: 180)
     
-    var dismissalHandler: ((Void) -> Void)?
+    var dismissalHandler: (() -> Void)?
     
     private static let labelFont: UIFont = UIFont(name: "HelveticaNeue-Thin", size: 26)!
     private static let labelInset: CGFloat = 44.0
@@ -170,7 +170,7 @@ final class VHUDView: UIView {
         self.removeFromSuperview()
     }
     
-    func dismiss(_ duration: TimeInterval, _ deley: TimeInterval? = nil, _ text: String? = nil, _ completion: ((Void) -> Void)? = nil) {
+    func dismiss(_ duration: TimeInterval, _ deley: TimeInterval? = nil, _ text: String? = nil, _ completion: (() -> Void)? = nil) {
         if self.dismissalLink != nil { return }
         
         self.progressLink?.reset()

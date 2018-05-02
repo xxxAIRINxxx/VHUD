@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "VHUD"
-  s.version      = "1.3.0"
+  s.version      = "1.3.1"
   s.summary      = "Simple HUD."
   s.homepage     = "https://github.com/xxxAIRINxxx/VHUD"
   s.license      = 'MIT'

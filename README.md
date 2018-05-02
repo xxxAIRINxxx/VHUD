@@ -161,13 +161,13 @@ VHUD.show(content)
 
 ## Requirements
 
-* Xcode 9.0+
+* Xcode 9.3+
 
 |            | OS                         | Swift         |
 |------------|------------------|--------------|
 | **v1.1.x** | iOS 8+ | 3.0      |
 | **v1.2.x** | iOS 8+ | 3.2      |
-| **v1.3.x** | iOS 8+ | 4.0      |
+| **v1.3.x** | iOS 9+ | 4.1      |
 
 ## Installation
 

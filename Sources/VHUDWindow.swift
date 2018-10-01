@@ -25,7 +25,7 @@ final class VHUDWindow: UIWindow {
     private func setup() {
         self.frame = UIScreen.main.bounds
         self.rootViewController = VHUDViewController()
-        self.windowLevel = UIWindowLevelNormal + 500.0
+        self.windowLevel = UIWindow.Level.normal + 500.0
         self.rootViewController?.view.backgroundColor = .clear
         self.backgroundColor = .clear
         

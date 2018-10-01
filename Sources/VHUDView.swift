@@ -99,7 +99,7 @@ final class VHUDView: UIView {
             let v = UIVisualEffectView(effect: UIBlurEffect(style: effecType))
             v.clipsToBounds = true
             self.addSubview(v)
-            self.sendSubview(toBack: v)
+            self.sendSubviewToBack(v)
             v.layer.cornerRadius = self.progressView.layer.cornerRadius
             self.setCenterLayoutConstraint(v)
             self.blurView = v
@@ -114,7 +114,7 @@ final class VHUDView: UIView {
             self.backgroundColor = .clear
             let v = UIVisualEffectView(effect: UIBlurEffect(style: effecType))
             self.addSubview(v)
-            self.sendSubview(toBack: v)
+            self.sendSubviewToBack(v)
             self.allPin(subView: v)
         }
         

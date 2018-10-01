@@ -33,13 +33,13 @@ public enum Shape {
 public enum Style {
     case light
     case dark
-    case blur(UIBlurEffectStyle)
+    case blur(UIBlurEffect.Style)
 }
 
 public enum Background {
     case none
     case color(UIColor)
-    case blur(UIBlurEffectStyle)
+    case blur(UIBlurEffect.Style)
 }
 
 public struct VHUDContent {

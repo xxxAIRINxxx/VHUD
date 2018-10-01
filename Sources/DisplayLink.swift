@@ -44,7 +44,7 @@ final class DisplayLink {
     
     private func startLink() {
         self.displayLink = CADisplayLink(target: self, selector: #selector(self.updateDuration(_:)))
-        self.displayLink?.add(to: RunLoop.main, forMode: RunLoopMode.commonModes)
+        self.displayLink?.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
     }
     
     private func closeLink() {

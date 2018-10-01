@@ -1,9 +1,9 @@
 # VHUD
 
 [![Version](https://img.shields.io/cocoapods/v/VHUD.svg?style=flat)](http://cocoadocs.org/docsets/VHUD)
-[![Swift 4.0](https://img.shields.io/badge/Swift-4.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![Platforms iOS](https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat)](https://developer.apple.com/swift/)
-[![Xcode 9.0+](https://img.shields.io/badge/Xcode-9.0+-blue.svg?style=flat)](https://developer.apple.com/swift/)
+[![Xcode 10+](https://img.shields.io/badge/Xcode-10+-blue.svg?style=flat)](https://developer.apple.com/swift/)
 
 Simple HUD.
 
@@ -161,13 +161,14 @@ VHUD.show(content)
 
 ## Requirements
 
-* Xcode 9.3+
+* Xcode 10+
 
 |            | OS                         | Swift         |
 |------------|------------------|--------------|
 | **v1.1.x** | iOS 8+ | 3.0      |
 | **v1.2.x** | iOS 8+ | 3.2      |
 | **v1.3.x** | iOS 9+ | 4.1      |
+| **v1.4.x** | iOS 9+ | 4.2      |
 
 ## Installation
 
